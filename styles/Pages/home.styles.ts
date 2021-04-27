@@ -524,7 +524,12 @@ export const SearchPlaceInput = styled.input`
     outline: none;
   }
 `;
-export const ClearBtn = styled.div`
+export const ClearBtn = styled.div<{ active: boolean }>`
+  ${(props) =>
+    !props.active &&
+    css`
+      display: none;
+    `}
   flex: 0 0 0%;
   position: relative;
   z-index: 5;
@@ -577,13 +582,13 @@ export const XButton = styled.button`
     }
   }
 `;
-export const SuggestOptions = styled.div`
+export const SuggestOptions = styled.div<{ active: boolean }>`
   left: 0px;
   position: absolute;
   right: 0px;
   top: 100%;
   z-index: 4;
-  visibility: hidden;
+  visibility: ${(props) => (props.active ? "visible" : "hidden")};
 `;
 export const SuggestOptionsContainer = styled.div`
   position: absolute;
@@ -664,6 +669,18 @@ export const PlaceName = styled.div`
     -webkit-box-orient: vertical;
   }
 `;
+export const PresentationPlace = styled.li`
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px 32px 2px;
+  span {
+    text-transform: uppercase;
+    font-size: 12px;
+    line-height: 12px;
+    font-weight: 600;
+  }
+`;
+
 export const FieldOneSpans = styled.span`
   border: 0px;
   clip: rect(0 0 0 0);
@@ -773,38 +790,40 @@ export const GuestFieldBtn = styled(DateFieldBtn)`
   }
 `;
 export const SearchSubmitBtn = styled.div`
-  flex: 0 0 auto !important;
-  margin-left: -6px !important;
-  padding-right: 9px !important;
-  position: relative !important;
-  z-index: 5 !important;
+  flex: 0 0 auto;
+  margin-left: -6px;
+  padding-right: 9px;
+  position: relative;
+  z-index: 5;
 `;
-export const SubmitBtn = styled.button.attrs({ type: "button" })`
-  appearance: none !important;
-  background: transparent !important;
-  border: 0px !important;
-  color: #ffffff !important;
-  cursor: pointer !important;
-  display: inline-block !important;
-  font-family: inherit !important;
-  font-size: 16px !important;
-  font-weight: 600 !important;
-  line-height: 16px !important;
-  margin: 0px !important;
-  outline: none !important;
-  overflow: hidden !important;
-  padding: 0px !important;
-  text-align: inherit !important;
-  text-decoration: none !important;
-  user-select: auto !important;
-  background-color: #ff385c !important;
-  border-radius: 24px !important;
-  height: 48px !important;
-  max-width: 48px !important;
-  position: relative !important;
-  transition: 0.2s max-width cubic-bezier(0.35, 0, 0.65, 1) !important;
-  vertical-align: middle !important;
-  z-index: 0 !important;
+export const SubmitBtn = styled.button.attrs({ type: "button" })<{
+  active: boolean;
+}>`
+  appearance: none;
+  background: transparent;
+  border: 0px;
+  color: #ffffff;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 16px;
+  margin: 0px;
+  outline: none;
+  overflow: hidden;
+  padding: 0px;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: auto;
+  background-color: #ff385c;
+  border-radius: 24px;
+  height: 48px;
+  max-width: 48px;
+  position: relative;
+  transition: 0.2s max-width cubic-bezier(0.35, 0, 0.65, 1);
+  vertical-align: middle;
+  z-index: 0;
 
   ::before {
     background: linear-gradient(
@@ -812,27 +831,38 @@ export const SubmitBtn = styled.button.attrs({ type: "button" })`
       #e61e4d 0%,
       #e31c5f 50%,
       #d70466 100%
-    ) !important;
-    bottom: 0px !important;
-    content: "" !important;
-    left: 0px !important;
-    position: absolute !important;
-    right: 0px !important;
-    top: 0px !important;
-    transition: 0.2s opacity cubic-bezier(0.35, 0, 0.65, 1) !important;
-    will-change: opacity !important;
-    z-index: 0 !important;
-    opacity: 0 !important;
+    );
+    bottom: 0px;
+    content: "";
+    left: 0px;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    transition: 0.2s opacity cubic-bezier(0.35, 0, 0.65, 1);
+    will-change: opacity;
+    z-index: 0;
+    opacity: 0;
   }
   :hover::before {
-    opacity: 1 !important;
+    opacity: 1;
   }
+  ${(props) =>
+    props.active &&
+    css`
+      max-width: 200px;
+    `}
 `;
+// export const NoIdeaSpan = styled.span`
+//   display: block;
+//   position: relative;
+//   pointer-events: none;
+// `;
+
 export const SubmitBtnContent = styled.div`
-  display: inline-flex !important;
-  padding: 16px !important;
-  position: relative !important;
-  z-index: 1 !important;
+  display: inline-flex;
+  padding: 16px;
+  position: relative;
+  z-index: 1;
 
   svg {
     display: block;
@@ -844,10 +874,266 @@ export const SubmitBtnContent = styled.div`
     overflow: visible;
   }
 `;
-export const SearchBtnTitle = styled.div`
-  opacity: 0 !important;
-  padding-left: 8px !important;
-  padding-right: 4px !important;
-  transition: 0.1s opacity cubic-bezier(0.35, 0, 0.65, 1) !important;
-  transition-delay: 0.1s !important;
+export const SearchBtnTitle = styled.div<{ active: boolean }>`
+  opacity: ${(props) => (props.active ? 1 : 0)};
+  padding-left: 8px;
+  padding-right: 4px;
+  transition: 0.1s opacity cubic-bezier(0.35, 0, 0.65, 1);
+  transition-delay: 0.1s;
+`;
+export const RightHeadWrapper = styled.nav`
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 80px;
+`;
+export const HostBtn = styled.div`
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  display: flex;
+  -webkit-flex: auto;
+  -ms-flex: 1 1 auto;
+  flex: auto;
+  justify-content: flex-end;
+  margin-right: 8px;
+`;
+export const HostRegisLink = styled.a`
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0px;
+  outline: none;
+  overflow: visible;
+  padding: 12px;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: auto;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1;
+  color: #222222;
+  border-radius: 22px;
+  ::before {
+    border-radius: 22px;
+    bottom: 0px;
+    content: "";
+    left: -3px;
+    position: absolute;
+    right: -3px;
+    top: 0px;
+    z-index: 0;
+  }
+  :hover {
+    border: none;
+    padding: 13px 12px;
+    ::before {
+      background: #f7f7f7;
+    }
+  }
+  div {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    position: relative;
+    z-index: 1;
+  }
+`;
+export const LangWrapperBtn = styled.div`
+  position: relative;
+  display: inline;
+`;
+export const LanguageBtn = styled.button`
+  appearance: none;
+  background: transparent;
+  border: 0px;
+  cursor: pointer;
+  display: inline-block;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18px;
+  margin: 0px;
+  outline: none;
+  overflow: visible;
+  padding: 12px;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: auto;
+  position: relative;
+  white-space: nowrap;
+  z-index: 1;
+  color: #222222;
+
+  ::before {
+    border-radius: 22px;
+    bottom: 0px;
+    content: "";
+    left: -3px;
+    position: absolute;
+    right: -3px;
+    top: 0px;
+    z-index: 0;
+  }
+  :hover {
+    ::before {
+      background: #f7f7f7;
+    }
+  }
+`;
+export const LangBtnLogo = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  div {
+    align-items: center;
+    display: flex;
+    height: 18px;
+    position: relative;
+    z-index: 1;
+    svg {
+      display: block;
+      height: 16px;
+      width: 16px;
+      fill: currentcolor;
+    }
+  }
+`;
+export const UserInfoDropdown = styled.div`
+  > div {
+    display: inline;
+    position: relative;
+    button {
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      appearance: none;
+      background: transparent;
+      border: 1px solid #dddddd;
+      color: #222222;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      margin: 0px;
+      outline: none;
+      overflow: visible;
+      padding: 5px 5px 5px 12px;
+      text-align: inherit;
+      text-decoration: none;
+      user-select: auto;
+      align-items: center;
+      background-color: #ffffff;
+      border-radius: 21px;
+      height: 42px;
+      position: relative;
+      vertical-align: middle;
+      transition: box-shadow 0.2s ease;
+      z-index: 1;
+      :hover {
+        box-shadow: 0px 2px 4px rgb(0 0 0 / 18%);
+      }
+    }
+  }
+`;
+export const BurgerIcon = styled.div`
+  svg {
+    display: block;
+    fill: none;
+    height: 16px;
+    width: 16px;
+    stroke: currentcolor;
+    stroke-width: 3;
+    overflow: visible;
+  }
+`;
+export const UserAvatar = styled.div`
+  color: #717171;
+  flex: 0 0 30px;
+  height: 30px;
+  margin-left: 12px;
+  overflow: hidden;
+  position: relative;
+  width: 30px;
+  z-index: 1;
+  svg {
+    display: block;
+    height: 100%;
+    width: 100%;
+    fill: currentcolor;
+  }
+  img {
+    background-color: currentcolor;
+    border-radius: 50%;
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+`;
+export const HeaderProfileMenu = styled.div`
+  background: rgb(255, 255, 255);
+  border-radius: 12px;
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 16px;
+  color: rgb(34, 34, 34);
+  margin-top: 34px;
+  padding: 8px 0px;
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  max-height: calc(100vh - 100px);
+  overflow-y: auto;
+  z-index: 2;
+  min-width: 240px;
+  display: block;
+`;
+export const ProfileMenuOpts = styled.a`
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  appearance: none;
+  background: transparent;
+  border: 0px;
+  color: #222222;
+  cursor: pointer;
+  display: flex;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  margin: 0px;
+  outline: none;
+  overflow: visible;
+  padding: 12px 16px;
+  text-align: inherit;
+  text-decoration: none;
+  user-select: auto;
+  white-space: nowrap;
+  width: 100%;
+  align-items: center;
+  &.bold {
+    font-weight: 600;
+  }
+  :hover {
+    background-color: #f7f7f7;
+  }
+  div {
+    flex: 1 0 auto;
+  }
+`;
+export const ProfileMenuLineBreak = styled.div`
+  background: #dddddd;
+  margin: 8px 0;
+  height: 1px;
 `;

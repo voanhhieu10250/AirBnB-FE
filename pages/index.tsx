@@ -1,7 +1,8 @@
-import Head from "next/head";
 import * as s from "../styles/Pages/home.styles";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
+import CPCenterMainNonScroll from "../components/CPCenterMainNonScroll";
+import CPHomeHeaderMenu from "../components/CPHomeHeaderMenu";
 
 export default function Home() {
   const [scrolled, setScrollState] = useState(false);
@@ -73,157 +74,38 @@ export default function Home() {
                 </s.SearchBtn>
               </s.BtnWrapper>
             </s.MockSearchBtn>
-            <s.CenterMainOnScroll>
-              <s.FormWrapper>
-                <s.Form>
-                  <s.Fieldset>
-                    <s.Sections>
-                      <label htmlFor="search-block-tab-false-STAYS">
-                        <s.SectionsInput
-                          id="search-block-tab-false-STAYS"
-                          value="/home"
-                          defaultChecked
-                        />
-                        <s.SectionsSpan>Nơi ở</s.SectionsSpan>
-                      </label>
-                      <label htmlFor="search-block-tab-false-EXPERIENCES">
-                        <s.SectionsInput
-                          id="search-block-tab-false-EXPERIENCES"
-                          value="/experiences"
-                        />
-                        <s.SectionsSpan>Trải nghiệm</s.SectionsSpan>
-                      </label>
-                      <s.SectionsLink>
-                        <Link href="/s/experiences/online">
-                          Trải nghiệm trực tuyến
-                        </Link>
-                      </s.SectionsLink>
-                    </s.Sections>
-                  </s.Fieldset>
-                  <s.FormFilter>
-                    <s.FilterWrapper>
-                      <s.FieldOne>
-                        <s.FieldWrapperOne>
-                          <s.FieldOneLabel>
-                            <s.LabelContain>
-                              <s.LabelTitle>Địa điểm</s.LabelTitle>
-                              <s.SearchPlaceInput placeholder="Bạn sắp đi đâu?" />
-                            </s.LabelContain>
-                          </s.FieldOneLabel>
-                          {/* clear button appears when use have typed in the input field */}
-                          <s.ClearBtn>
-                            <s.ClearBtnWrapper>
-                              <s.XButton>
-                                <span>
-                                  <svg
-                                    viewBox="0 0 32 32"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    aria-hidden="true"
-                                    role="presentation"
-                                    focusable="false"
-                                  >
-                                    <path d="m6 6 20 20"></path>
-                                    <path d="m26 6-20 20"></path>
-                                  </svg>
-                                </span>
-                              </s.XButton>
-                            </s.ClearBtnWrapper>
-                          </s.ClearBtn>
-                          <s.SuggestOptions>
-                            <s.SuggestOptionsContainer>
-                              <section>
-                                <div>
-                                  <s.ListOptions>
-                                    {/* Render list OptionPlace */}
-                                    <s.OptionPlace>
-                                      <s.PlaceIcon>
-                                        {/* Default icon will be an img. When rendered options icons will be svg */}
-                                        <img
-                                          src="/images/fc42dde0-36a7-460e-af89-10b5e44e48d8.jpg"
-                                          alt="place icon"
-                                        />
-                                        {/* <svg
-                                          viewBox="0 0 24 24"
-                                          role="presentation"
-                                          aria-hidden="true"
-                                          focusable="false"
-                                        >
-                                          <path d="m12 13c-1.6562848 0-3-1.3434662-3-2.9994439 0-1.65708993 1.3437152-3.0005561 3-3.0005561 1.6573971 0 3 1.34346617 3 3.0005561 0 1.6559777-1.3426029 2.9994439-3 2.9994439m-.0010745-10c-3.86277368 0-6.99503645 3.09628261-6.99503645 6.91572385-.15345985 4.02308935 4.59013139 9.08416075 6.35071535 10.81932575.3584233.3532672.9312701.3532672 1.2896934 0 1.7595329-1.735165 6.5031241-6.7962364 6.3507153-10.81932575 0-3.81944124-3.1322627-6.91572385-6.9960876-6.91572385"></path>
-                                        </svg> */}
-                                      </s.PlaceIcon>
-                                      <s.PlaceName>
-                                        <div>Khám phá các điểm đến lân cận</div>
-                                      </s.PlaceName>
-                                    </s.OptionPlace>
-                                  </s.ListOptions>
-                                </div>
-                              </section>
-                            </s.SuggestOptionsContainer>
-                          </s.SuggestOptions>
-
-                          <s.FieldOneSpans>
-                            Điều hướng về phía trước để truy cập kết quả được đề
-                            xuất
-                          </s.FieldOneSpans>
-                          <s.FieldOneSpans>1 đề xuất.</s.FieldOneSpans>
-                        </s.FieldWrapperOne>
-                      </s.FieldOne>
-                      <s.VerticalLine />
-                      <s.FieldTwo>
-                        <s.DateFields>
-                          <s.DateFieldBtn>
-                            <s.BtnContainer>
-                              <s.TitleDateBtn>Nhận phòng</s.TitleDateBtn>
-                              <s.SelectedDate>Thêm ngày</s.SelectedDate>
-                            </s.BtnContainer>
-                          </s.DateFieldBtn>
-                        </s.DateFields>
-                        <s.VerticalLine />
-                        <s.DateFields>
-                          <s.DateFieldBtn>
-                            <s.BtnContainer>
-                              <s.TitleDateBtn>Trả phòng</s.TitleDateBtn>
-                              <s.SelectedDate>Thêm ngày</s.SelectedDate>
-                            </s.BtnContainer>
-                          </s.DateFieldBtn>
-                        </s.DateFields>
-                      </s.FieldTwo>
-                      <s.VerticalLine />
-                      <s.FieldThree>
-                        <s.GuestFieldBtn>
-                          <s.BtnContainer>
-                            <s.TitleDateBtn>Nhận phòng</s.TitleDateBtn>
-                            <s.SelectedDate>Thêm ngày</s.SelectedDate>
-                          </s.BtnContainer>
-                        </s.GuestFieldBtn>
-                        <s.SearchSubmitBtn>
-                          <s.SubmitBtn>
-                            <s.SubmitBtnContent>
-                              <div>
-                                <svg
-                                  viewBox="0 0 32 32"
-                                  xmlns="http://www.w3.org/2000/svg"
-                                  aria-hidden="true"
-                                  role="presentation"
-                                  focusable="false"
-                                >
-                                  <g fill="none">
-                                    <path d="m13 24c6.0751322 0 11-4.9248678 11-11 0-6.07513225-4.9248678-11-11-11-6.07513225 0-11 4.92486775-11 11 0 6.0751322 4.92486775 11 11 11zm8-3 9 9"></path>
-                                  </g>
-                                </svg>
-                              </div>
-                              <s.SearchBtnTitle>Tìm kiếm</s.SearchBtnTitle>
-                            </s.SubmitBtnContent>
-                          </s.SubmitBtn>
-                        </s.SearchSubmitBtn>
-                      </s.FieldThree>
-                    </s.FilterWrapper>
-                  </s.FormFilter>
-                </s.Form>
-              </s.FormWrapper>
-            </s.CenterMainOnScroll>
+            {!scrolled && <CPCenterMainNonScroll />}
           </s.CenterHead>
-          <s.RightHead></s.RightHead>
+          <s.RightHead>
+            <s.RightHeadWrapper>
+              <s.HostBtn>
+                <Link href="/host/home">
+                  <s.HostRegisLink>
+                    <div>Trở thành chủ nhà</div>
+                  </s.HostRegisLink>
+                </Link>
+                <s.LangWrapperBtn>
+                  <s.LanguageBtn>
+                    <s.LangBtnLogo>
+                      <div>
+                        <svg
+                          viewBox="0 0 16 16"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                          role="presentation"
+                          focusable="false"
+                        >
+                          <path d="m8.002.25a7.77 7.77 0 0 1 7.748 7.776 7.75 7.75 0 0 1 -7.521 7.72l-.246.004a7.75 7.75 0 0 1 -7.73-7.513l-.003-.245a7.75 7.75 0 0 1 7.752-7.742zm1.949 8.5h-3.903c.155 2.897 1.176 5.343 1.886 5.493l.068.007c.68-.002 1.72-2.365 1.932-5.23zm4.255 0h-2.752c-.091 1.96-.53 3.783-1.188 5.076a6.257 6.257 0 0 0 3.905-4.829zm-9.661 0h-2.75a6.257 6.257 0 0 0 3.934 5.075c-.615-1.208-1.036-2.875-1.162-4.686l-.022-.39zm1.188-6.576-.115.046a6.257 6.257 0 0 0 -3.823 5.03h2.75c.085-1.83.471-3.54 1.059-4.81zm2.262-.424c-.702.002-1.784 2.512-1.947 5.5h3.904c-.156-2.903-1.178-5.343-1.892-5.494l-.065-.007zm2.28.432.023.05c.643 1.288 1.069 3.084 1.157 5.018h2.748a6.275 6.275 0 0 0 -3.929-5.068z"></path>
+                        </svg>
+                      </div>
+                    </s.LangBtnLogo>
+                  </s.LanguageBtn>
+                </s.LangWrapperBtn>
+              </s.HostBtn>
+
+              <CPHomeHeaderMenu />
+            </s.RightHeadWrapper>
+          </s.RightHead>
         </s.HeadContainer>
       </s.Header>
       {/* Banner */}
